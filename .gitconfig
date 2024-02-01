@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+	email = 71671687+Amenrio@users.noreply.github.com
+	name = amenrio
+# Please adapt and uncomment the following lines:
+#	name = Andres Mendez
+#	email = amenrio@proton.me
+[credential]
+	helper = store
