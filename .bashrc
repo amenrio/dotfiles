@@ -211,4 +211,4 @@ studio_env() {
 eval "$(starship init bash)"
 
 # User specific aliases and functions
-alias dotfiles='/usr/bin/git --git-dir=/home/andres.mendez/dotfiles --work-tree=/home/andres.mendez'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
