@@ -7,15 +7,15 @@ success_symbol = "[❯](rosewater)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
-[username]
-show_always=true
-style_user = "fg:pink"
-style_root = "fg:#3B4252"
-format = '[$user ]($style)'
+# [username]
+# show_always=true
+# style_user = "fg:pink"
+# style_root = "fg:#3B4252"
+# format = '[$user ]($style)'
 
 [directory]
 style = "fg:lavender"
-format = "[ $path ]($style)"
+format = "[$path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
