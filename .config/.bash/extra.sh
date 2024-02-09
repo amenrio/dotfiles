@@ -12,15 +12,19 @@ if [[ $iatest -gt 0 ]]; then
     # Set bell style to visible
     bind "set bell-style visible"
 fi
-
+if [ ! -d ${XDG_CONFIG_HOME}/tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ${XDG_CONFIG_HOME}/tmux/plugins/tpm
+    ${XDG_CONFIG_HOME}/tmux/plugins/tpm/bin/install_plugins
+fi
 # Start tmux if not already running
 if [ ! $TMUX ]; then
     SESSION_NAME="main"
+    ~/.tmux/plugins/tpm/bin/update_plugins all
     tmux has-session -t $SESSION_NAME &> /dev/null
-    tmux send-prefix -t $SESSION_NAME
-    tmux send-keys -t $SESSION_NAME C-m
     if [ $? != 0 ]; then
         tmux new-session -s $SESSION_NAME -n "main" -d
+        # Automatically update plugins when starting tmux in bash
+        
     fi
     tmux attach -t $SESSION_NAME
 fi
