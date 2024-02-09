@@ -117,6 +117,7 @@ alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
 export PATH
+export LOCAL_ANTA_REPOS=/home/andres.mendez/repos/antaruxa
 
 # Extracts any archive(s) (if unp isn't installed)
 extract() {
@@ -212,3 +213,9 @@ eval "$(starship init bash)"
 
 # User specific aliases and functions
 alias dotfiles='/usr/bin/git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
+
+if [ ! $TMUX ]; then
+    eval "~/tmux-launch.sh"
+fi
+# eval "~/tmux-launch.sh"
+
