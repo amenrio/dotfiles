@@ -13,9 +13,11 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+export XDG_CONFIG_HOME=$HOME/.config
 
 # Load shell dotfiles, and then some:
-for file in ~/bash/{path,exports,aliases,functions,extra}.sh; do
+echo "Loading custom bash config"
+for file in ${XDG_CONFIG_HOME}/.bash/{path,exports,aliases,functions,extra}.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
