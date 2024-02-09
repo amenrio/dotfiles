@@ -18,3 +18,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 export LOCAL_ANTA_REPOS=/home/andres.mendez/repos/antaruxa
 export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
+
+# Custom .desktop file directory
+export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
+

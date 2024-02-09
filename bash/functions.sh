@@ -62,9 +62,6 @@ up() {
 	cd $d
 }
 
-# Custom .desktop file directory
-export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
-
 install_desktop_files() { 
 
 	for desktop_file in `/usr/bin/ls $DOTDESKTOP_DIR/*.desktop`
@@ -81,10 +78,19 @@ install_desktop_files() {
 }
 
 bak () {
-    if [ -d $1 ]; then
-        mv $1{,.bak}
+    if [ -e $1.bak ]; then
+        bak $1.bak
     fi
+
+    if [ -e $1 ]; then
+        mv $1 $1.bak
+    fi 
 }
+
+
+
+
+
 studio_env() {
     source ~/studio_env/bin/activate
 }

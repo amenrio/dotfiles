@@ -15,7 +15,7 @@ fi
 
 
 # Load shell dotfiles, and then some:
-for file in ~/bash/{path,aliases,exports,functions,extra}.sh; do
+for file in ~/bash/{path,exports,aliases,functions,extra}.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -27,7 +27,6 @@ shopt -s checkwinsize
 # Causes bash to append to history instead of overwriting it so if you start a new terminal, you have old session history
 shopt -s histappend
 PROMPT_COMMAND='history -a'
-
 
 
 eval "$(starship init bash)"
