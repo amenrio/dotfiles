@@ -13,16 +13,12 @@ if [[ $iatest -gt 0 ]]; then
     bind "set bell-style visible"
 fi
 
-# Ensure tmux tpm is installed
-if [ ! -d ~/.config/tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-fi
-
 # Start tmux if not already running
 if [ ! $TMUX ]; then
     SESSION_NAME="main"
     tmux has-session -t $SESSION_NAME &> /dev/null
-
+    tmux send-prefix -t $SESSION_NAME
+    tmux send-keys -t $SESSION_NAME C-m
     if [ $? != 0 ]; then
         tmux new-session -s $SESSION_NAME -n "main" -d
     fi
