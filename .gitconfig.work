@@ -1,4 +1,4 @@
 # This is Git's per-user configuration file.
 [user]
 	email = andres.mendez@antaruxa.com
-    signingkey = 03390675E4B7205A624054562490E7B7008E3260
+    signingKey = 03390675E4B7205A624054562490E7B7008E3260
