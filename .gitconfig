@@ -4,9 +4,9 @@
     email = amenrio@gmail.com
     signingKey = 62450026535A77DE31138B9D64EE492B0F4B690B
 [includeIf "gitdir:~/repos/work"]
-    path = .gitconfig-work
+    path = .gitconfig.work
 [includeIf "gitdir:~/repos/personal"]
-    path = .gitconfig-personal
+    path = .gitconfig.personal
 [credential]
 	helper = store
 [maintenance]
