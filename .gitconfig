@@ -1,9 +1,23 @@
 # This is Git's per-user configuration file.
 [user]
-	email = 71671687+Amenrio@users.noreply.github.com
-	name = amenrio
-# Please adapt and uncomment the following lines:
-#	name = Andres Mendez
-#	email = amenrio@proton.me
+    name = amenrio
+    email = amenrio@gmail.com
+[includeIf "gitdir:~/repos/work"]
+    path = .gitconfig-work
+[includeIf "gitdir:~/repos/personal"]
+    path = .gitconfig-personal
+
 [credential]
 	helper = store
+[maintenance]
+	repo = /home/andres.mendez
+	repo = /home/andres.mendez/repos/work/afs_stickers
+	repo = /home/andres.mendez/repos/personal/tfg
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
+[alias]
+	fpush = push --force-with-lease
+[commit]
+	gpgsign = true

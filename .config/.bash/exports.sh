@@ -21,4 +21,4 @@ export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
 
 # Custom .desktop file directory
 export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
-
+export GPG_TTY=$(tty)
