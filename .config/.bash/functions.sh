@@ -87,9 +87,9 @@ bak () {
     fi 
 }
 
-
-
-
+dotfiles () {
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
 
 studio_env() {
     source ~/studio_env/bin/activate

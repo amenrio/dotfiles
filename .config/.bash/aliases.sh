@@ -45,5 +45,4 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
 alias df='dotfiles'
