@@ -1,0 +1,20 @@
+[user]
+    name = Andres Mendez
+    email = amenrio@gmail.com
+
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig.work
+    gpgSign = true
+
+[includeIf "gitdir:~/personal/"]
+    path = ~/.gitconfig.personal
+    gpgSign = true
+
+[credential]
+	helper = store
+
+[commit]
+    gpgSign = false
+
+[maintenance]
+	repo = /home/andres.mendez/repos/antaruxa/tools/studio/anta_stickers
