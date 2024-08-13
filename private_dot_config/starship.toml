@@ -11,7 +11,7 @@ format = '\[[$symbol($version(-$name))]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
+format = '\[[in $duration]($style)\]'
 
 [cobol]
 format = '\[[$symbol($version)]($style)\]'
@@ -33,6 +33,14 @@ format = '\[[$symbol($version)]($style)\]'
 
 [docker_context]
 format = '\[[$symbol$context]($style)\]'
+
+[env_var.PROJECT]
+style = 'red'
+format = '\[[󰿏 $env_value]($style)\]'
+
+[env_var.REZ_SHELL_INTERACTIVE]
+style = 'blue'
+format = '\[[rez-env]($style)\]'
 
 [dotnet]
 format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
@@ -175,7 +183,11 @@ format = '\[[$symbol$workspace]($style)\]'
 [time]
 format = '\[[$time]($style)\]'
 
+[directory]
+format = '\[[$path]($style)\]'
+
 [username]
+show_always = true
 format = '\[[$user]($style)\]'
 
 [vagrant]
