@@ -16,10 +16,3 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-export LOCAL_ANTA_REPOS=/home/andres.mendez/repos/antaruxa
-export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
-
-# Custom .desktop file directory
-export DOTDESKTOP_DIR=/home/amenrio/repos/.desktop
-
-export PATH=$PATH:/opt/blender/4.2

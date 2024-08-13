@@ -16,9 +16,6 @@ if [ ! -d ${XDG_CONFIG_HOME}/tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ${XDG_CONFIG_HOME}/tmux/plugins/tpm
     ${XDG_CONFIG_HOME}/tmux/plugins/tpm/bin/install_plugins
 fi
-if [ ! starship ]; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -b $HOME/.local/bin -y
-fi
 # Start tmux if not already running
 #if [ ! $TMUX ]; then
 #    SESSION_NAME="main"
