@@ -1,12 +1,31 @@
 # Personal dotfiles
 
-## Install with `chezmoi`
+## Download with `chezmoi`
+
+```bash
+chezmoi -- init --aply amenrio
+```
+
+Or install both chezmoi and my dotfiles
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply amenrio
 ```
 
 ## Install my entire development environment
+
+My entire development environment consists of 
+
+* Tmux configuration and plugins
+* My neovim configuration
+* Starship
+* Pyenv
+* Lazygit
+* Fzf
+* poetry
+
+Aswell as some dependencies for neovim plugins such as:
+* nodejs 20.16.0
 
 ### Shorturl
 
