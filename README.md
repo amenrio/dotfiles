@@ -1,10 +1,20 @@
 # Personal dotfiles
 
-## Install
+## Install with `chezmoi`
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply amenrio
+```
+
+## Install my entire development environment
+
+### Shorturl
 
 ```bash
 curl -Lks https://shorturl.at/rgyl8 | bash
 ```
+
+### Github Gist
 
 > In case of error, try long url
 ```bash
