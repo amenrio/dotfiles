@@ -1,10 +1,12 @@
 #!/bin/bash
 
+{{- if eq .chezmoi.hostname "homerocky9" }}
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+{{- end }}
 
 # Load bash completion scripts (if any)
 if [ -f /usr/share/bash-completion/bash_completion ]; then
