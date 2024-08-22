@@ -1,3 +1,10 @@
 {
-    "packages_path": ["/home/andres.mendez/packages","/mnt/servers/pipeline/rez/packages"]
+    "packages_path": ["/home/andres.mendez/packages","/mnt/servers/pipeline/rez/packages"],
+    "plugins":{
+        "release_vcs":{
+            "git":{
+                "allow_no_upstream":true
+            }
+            }
+    }
 }
