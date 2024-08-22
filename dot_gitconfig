@@ -16,5 +16,8 @@
 [commit]
     gpgSign = false
 
+[init]
+    defaultBranch=main
+
 [maintenance]
 	repo = /home/andres.mendez/repos/antaruxa/tools/studio/anta_stickers
