@@ -50,3 +50,5 @@ alias ungz='tar -xvzf'
 #Custom shortcuts for activating and deactivating python venvs
 alias a='activate'
 alias d='deactivate'
+
+alias ggs='git_global_status'

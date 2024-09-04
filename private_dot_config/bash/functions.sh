@@ -78,13 +78,7 @@ install_desktop_files() {
 }
 
 bak () {
-    if [ -e $1.bak ]; then
-        bak $1.bak
-    fi
-
-    if [ -e $1 ]; then
-        mv $1 $1.bak
-    fi
+    mv $1{,.bak}
 }
 
 studio_env() {
@@ -105,10 +99,24 @@ cd() {
     builtin cd "$@" && ls;
 }
 
+
 goto() {
     cd $(dirname $(which "$@"))
 }
 
 launch() {
     rez-env -i /mnt/servers/pipeline/rez/projects/"$1"/context.rxt
+}
+
+# function yy() {
+#     local tmp="$(mktemp -t "yazi-cw.XXXXXX")"
+#     yazi "$@" --cwd-file="$tmp"
+#     if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+#         builtin cd -- "$cwd"
+#     fi
+#     rm -f -- "$tmp"
+# }
+#
+git_global_status() {
+    find . -name .git -execdir bash -c 'echo -en "\033[1;31m"repo: "\033[1;34m"; basename "`git rev-parse --show-toplevel`"; git status -s' \;
 }
