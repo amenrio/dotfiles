@@ -52,3 +52,4 @@ alias a='activate'
 alias d='deactivate'
 
 alias ggs='git_global_status'
+alias icat='kitten icat'
