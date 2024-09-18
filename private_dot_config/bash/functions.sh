@@ -96,7 +96,7 @@ activate() {
 }
 
 cd() {
-    builtin cd "$@" && ls;
+    builtin cd "$@" && ls --width=100;
 }
 
 
