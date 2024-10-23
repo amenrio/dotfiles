@@ -21,3 +21,6 @@
 
 [maintenance]
 	repo = /home/andres.mendez/repos/antaruxa/tools/studio/anta_stickers
+[safe]
+	directory = /srv/projects/can/development
+	directory = /srv/projects/can/development/tools/can_tools
