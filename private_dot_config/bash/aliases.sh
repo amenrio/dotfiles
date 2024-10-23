@@ -53,3 +53,7 @@ alias d='deactivate'
 
 alias ggs='git_global_status'
 alias icat='kitten icat'
+
+# ALIAS FOR CUSTOM FUNCTIONS
+alias cdw="cd_to_dir ~/work"
+alias cda="cd_to_dir /srv/projects"

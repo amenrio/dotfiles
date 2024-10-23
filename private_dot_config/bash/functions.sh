@@ -95,6 +95,7 @@ activate() {
     done
 }
 
+
 cd() {
     builtin cd "$@" && ls --width=100;
 }
@@ -120,3 +121,41 @@ launch() {
 git_global_status() {
     find . -name .git -execdir bash -c 'echo -en "\033[1;31m"repo: "\033[1;34m"; basename "`git rev-parse --show-toplevel`"; git status -s' \;
 }
+
+
+cd_to_dir(){
+    local selected_dir
+    selected_dir=$(fd -t d . "$1" | fzf +m --height 50% --preview 'tree -C {}')
+    if [[ -n "$selected_dir" ]]; then
+        cd "$selected_dir" || return 1
+    fi
+}
+# goa() {
+#
+# }
+
+# gop() {
+#     if [[ $# -eq 1 ]]; then
+#         proj=$1
+#         selected=$(find -L /srv/projects/$proj -mindepth 1 -type d | fzf)
+#     else
+#         selected=$(find -L /srv/projects /srv/projects_offline -mindepth 1 -type d | fzf)
+#     fi
+#     cd $selected
+# }
+#
+# gow() {
+#     if [[ $# -eq 1 ]]; then
+#         selected=$1
+#     else
+#         # selected=$(find -L ~/lab/{sandbox,build,tests} ~/docs ~/.config ~/work/**/**/* ~/personal ~/tfg -mindepth 1 -maxdepth 1 -type d | fzf)
+#         # selected=$(find -L ~/work -type d \( -exec /usr/bin/test -d "{}/.git" -a "{}" != "." \; -print -prune \
+#             #     -o -name .git -prune | fzf)
+#         selected=$(find ~/work ~/personal -type d \( -exec /usr/bin/test -d "{}/.git" -a "{}" != "." \; -print -prune \
+#             -o -name .git -prune \) | fzf)
+#     fi
+#
+#     cd $selected
+#
+# }
+#
