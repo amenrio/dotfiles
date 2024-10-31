@@ -55,5 +55,8 @@ alias ggs='git_global_status'
 alias icat='kitten icat'
 
 # ALIAS FOR CUSTOM FUNCTIONS
-alias cdw="cd_to_dir ~/work"
+alias cdw="cd_to_dir $HOME/work"
 alias cda="cd_to_dir /srv/projects"
+alias cdc="cd_to_dir $HOME/.config"
+alias vw="vim_dir $HOME/work"
+alias vc="vim_dir $HOME/.config"
