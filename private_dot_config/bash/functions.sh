@@ -125,10 +125,14 @@ git_global_status() {
 
 cd_to_dir(){
     local selected_dir
-    selected_dir=$(fd -t d . "$1" | fzf +m --height 50% --preview 'tree -C {}')
+    selected_dir=$(fd -t d . "$1" | fzf +m --height 50% --layout reverse --preview 'tree -C {}')
     if [[ -n "$selected_dir" ]]; then
         cd "$selected_dir" || return 1
     fi
+}
+vim_dir() {
+   cd_to_dir "$@" 
+   nvim .
 }
 # goa() {
 #
