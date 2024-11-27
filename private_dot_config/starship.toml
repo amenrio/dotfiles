@@ -38,9 +38,9 @@ format = '\[[$symbol$context]($style)\]'
 style = 'red'
 format = '\[[󰿏 $env_value]($style)\]'
 
-[env_var.REZ_SHELL_INTERACTIVE]
+[env_var.REZ_USED_REQUEST]
 style = 'blue'
-format = '\[[rez-env]($style)\]'
+format = '\[[rez-env $env_value]($style)\]'
 
 [dotnet]
 format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
