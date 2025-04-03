@@ -8,18 +8,11 @@ fi
 
 {{- end }}
 
-# Load bash completion scripts (if any)
-if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Load shell dotfiles, and then some:
 echo "Loading custom bash config"
-for file in ${XDG_CONFIG_HOME}/bash/{path,exports,sources,aliases,functions,extra}.sh; do
+for file in ${XDG_CONFIG_HOME}/bash/{path,exports,sources,aliases,functions,extra,completions}.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -55,3 +48,5 @@ eval "$(starship init bash)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+eval "$(uv generate-shell-completion bash)"
+. "$HOME/.cargo/env"
