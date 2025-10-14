@@ -12,7 +12,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Load shell dotfiles, and then some:
 echo "Loading custom bash config"
-for file in ${XDG_CONFIG_HOME}/bash/{path,exports,sources,aliases,functions,extra,completions}.sh; do
+for file in ${XDG_CONFIG_HOME}/bash/{path,exports,sources,aliases,functions,extra,completions,secrets}.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -50,3 +50,8 @@ eval "$(starship init bash)"
 
 eval "$(uv generate-shell-completion bash)"
 . "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

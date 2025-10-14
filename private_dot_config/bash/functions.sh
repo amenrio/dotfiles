@@ -122,10 +122,9 @@ git_global_status() {
     find . -name .git -execdir bash -c 'echo -en "\033[1;31m"repo: "\033[1;34m"; basename "`git rev-parse --show-toplevel`"; git status -s' \;
 }
 
-
 cd_to_dir(){
     local selected_dir
-    selected_dir=$(fd -t d . "$1" | fzf +m --height 50% --layout reverse --preview 'tree -C {}')
+    selected_dir=$(fd -t d . "$1" --max-depth 1 | fzf +m --height 50% --layout reverse --preview 'tree -C {}')
     if [[ -n "$selected_dir" ]]; then
         cd "$selected_dir" || return 1
     fi

@@ -58,5 +58,7 @@ alias icat='kitten icat'
 alias cdw="cd_to_dir $HOME/work"
 alias cda="cd_to_dir /srv/projects"
 alias cdc="cd_to_dir $HOME/.config"
+alias cdl="cd_to_dir $HOME/work/lux"
 alias vw="vim_dir $HOME/work"
 alias vc="vim_dir $HOME/.config"
+
