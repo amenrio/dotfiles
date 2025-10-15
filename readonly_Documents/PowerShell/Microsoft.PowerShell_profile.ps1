@@ -6,6 +6,11 @@ Import-Module -Name PSReadline
 # Set-PSReadLineOption -EditMode Windows
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
 
+#Environments
+
+$env:PATH="$env:PATH;$env:USERPROFILE/bin;$env:USERPROFILE/.local/bin"
+[System.Environment]::SetEnvironmentVariable('VISUAL',"nvim")
+
 # Third Party modules
 Import-Module -Name PSFzf
 
@@ -91,4 +96,4 @@ function Invoke-Starship-PreCommand {
 }
 [System.Environment]::SetEnvironmentVariable('PYTHONDONTWRITEBYTECODE',1)
 Invoke-Expression (&starship init powershell)
-$env:PATH="$env:PATH;$env:USERPROFILE/bin"
+
