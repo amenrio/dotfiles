@@ -14,7 +14,16 @@ vim.opt.winborder = "rounded"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set({'n','v'}, '<leader>Y', '"+yy')
+vim.keymap.set({'n','v'}, '<leader>y', '"+y')
+
+vim.keymap.set({'n','v'}, '<leader>d', '"_d')
+vim.keymap.set({'n','v'}, '<leader>D', '"_dd')
+
+vim.keymap.set({'n','v'}, '<leader>p', '"_dp')
+vim.keymap.set({'n','v'}, '<leader>P', '"_dP')
+
+vim.keymap.set({'n','v'}, '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 

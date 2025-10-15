@@ -87,13 +87,6 @@ else
     info "Skipping ripgrep ..."
 fi
 
-if ! [ -x "$(command -v fzf)" ]; then
-    info "Installing fzf ..."
-    sudo apt-get install fzf -y
-else
-    info "Skipping fzf ..."
-fi
-
 # Install Starship
 if ! [ -x "$(command -v starship)" ]; then
     info "Installing starship ..."
@@ -119,7 +112,8 @@ if ! [ -x "$(command -v uv)" ]; then
 	. "$HOME/.bashrc"
     info "Installing python versions ..."
     $HOME/.local/bin/uv python install 3.14 3.13 3.12 3.11 3.10 3.9
-    ln -s $(which python3.11) $HOME/.local/bin/python 
+    ln -s $(which python3.13) $HOME/.local/bin/python 
+    ln -s $(which python3.13) $HOME/.local/bin/python3
 else
     info "Skipping Uv ..."
 fi
@@ -149,9 +143,7 @@ if ! [ -x "$(command -v nvim)" ]; then
     if ! [ -f "$HOME/.bash_profile" ]; then
 	printf "if [ -n \"$BASH\" ] && [ -r ~/.bashrc ]; then\n    . ~/.bashrc\nfi" > ~/.bash_profile
     fi
-	sudo apt install python3.12-venv -y
     bob install nightly
-    bob install stable
     ln -s "$HOME/.local/share/bob/nvim-bin/nvim" "$HOME/.local/bin/nvim"
     bob use nightly
 else
@@ -159,7 +151,7 @@ else
 fi
 
 # Install nvm
-if ! [ -d "$HOME/.nvm" ]; then
+if ! [ -x $(command -v node) ]; then
     info "Installing nvm ..."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     . "$HOME/.bashrc"
@@ -186,6 +178,14 @@ if ! [ -x "$(command -v brew)" ]; then
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
     info "Skipping homebrew ..."
+fi
+
+if ! [ -x "$(command -v fzf)" ]; then
+    info "Installing fzf ..."
+	brew install fzf
+	. "$HOME/.bashrc"
+else
+    info "Skipping fzf ..."
 fi
 
 if ! [ -x "$(command -v lazygit)" ]; then
