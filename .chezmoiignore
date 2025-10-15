@@ -1,7 +1,10 @@
 {{ if ne .chezmoi.os "windows" }}
 AppData/Local/nvim/init.lua
+.config/wezterm
+Documents
 {{ end }}
 {{ if ne .chezmoi.os "linux" }}
+.config/bash
 .config/nvim
 .config/tmux
 .bashrc

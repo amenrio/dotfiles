@@ -1,0 +1,9 @@
+{
+  "workspaces": {
+    "pxn": {
+      "workdir": "C:\\Users\\Amenrio\\Documents\\pxn",
+      "tabs": ["nvim","shell"]
+    }
+  }
+}
+
