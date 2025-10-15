@@ -61,6 +61,10 @@ function runAptGetUpdate()
 
 runAptGetUpdate 360
 
+if ! [ -d "$HOME/.local/bin" ]; then
+    mkdir -p "$HOME"/.local/bin
+fi
+
 if ! [ -x "$(command -v gcc)" ]; then
     info "Installing gcc ..."
     sudo apt-get install gcc -y
@@ -90,13 +94,31 @@ else
     info "Skipping fzf ..."
 fi
 
+# Install Starship
+if ! [ -x "$(command -v starship)" ]; then
+    info "Installing starship ..."
+    curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin" -y
+    . "$HOME/.bashrc"
+else
+    info "Skipping starship ..."
+fi
+
+# Install chezmoi
+if ! [ -x "$(command -v chezmoi)" ]; then
+    info "Installing chezmoi ..."
+    sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply amenrio
+    . "$HOME/.bashrc"
+else
+    info "Skipping chezmoi ..."
+fi
+
 # Install Uv and multiple python versions
 if ! [ -x "$(command -v uv)" ]; then
     info "Installing uv ..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    . "$HOME/.local/env"
+	. "$HOME/.bashrc"
     info "Installing python versions ..."
-    uv python install 3.14 3.13 3.12 3.11 3.10 3.9
+    $HOME/.local/bin/uv python install 3.14 3.13 3.12 3.11 3.10 3.9
     ln -s $(which python3.11) $HOME/.local/bin/python 
 else
     info "Skipping Uv ..."
@@ -104,29 +126,30 @@ fi
 
 # Install Rust and Cargo
 if ! [ -x "$(command -v cargo)" ]; then
+    . "$HOME/.bashrc"
     info "Installing rust & cargo ..."
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
-    . "$HOME/.cargo/env"
 else
     info "Skipping Rust & Cargo ..."
 fi
 
 # Install bob
 if ! [ -x "$(command -v bob)" ]; then
+    . "$HOME/.bashrc"
     info "Installing bob ..."
     cargo install --git https://github.com/MordechaiHadad/bob.git
-    . "$HOME/.bashrc"
 else
     info "Skipping bob ..."
 fi
 
 # Install nvim
 if ! [ -x "$(command -v nvim)" ]; then
+    . "$HOME/.bashrc"
     info "Installing nvim with bob ..."
     if ! [ -f "$HOME/.bash_profile" ]; then
 	printf "if [ -n \"$BASH\" ] && [ -r ~/.bashrc ]; then\n    . ~/.bashrc\nfi" > ~/.bash_profile
     fi
-	sudo apt install python3.12-venv
+	sudo apt install python3.12-venv -y
     bob install nightly
     bob install stable
     ln -s "$HOME/.local/share/bob/nvim-bin/nvim" "$HOME/.local/bin/nvim"
@@ -149,31 +172,13 @@ else
     info "Skipping nvm ..."
 fi
 
-# Install Starship
-if ! [ -x "$(command -v starship)" ]; then
-    info "Installing starship ..."
-    curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin" -y
-    . "$HOME/.bashrc"
-else
-    info "Skipping starship ..."
-fi
-
 # Install taskfile
 if ! [ -x "$(command -v task)" ]; then
     info "Installing taskfile ..."
-    sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
+    sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b "$HOME/.local/bin"
     . "$HOME/.bashrc"
 else
     info "Skipping taskfile ..."
-fi
-
-# Install chezmoi
-if ! [ -x "$(command -v chezmoi)" ]; then
-    info "Installing chezmoi ..."
-    sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply amenrio
-    . "$HOME/.bashrc"
-else
-    info "Skipping chezmoi ..."
 fi
 
 if ! [ -x "$(command -v brew)" ]; then
@@ -190,4 +195,3 @@ if ! [ -x "$(command -v lazygit)" ]; then
 else
     info "Skipping lazygit ..."
 fi
-
