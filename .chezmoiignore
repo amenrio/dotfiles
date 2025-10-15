@@ -1,5 +1,5 @@
 {{ if ne .chezmoi.os "windows" }}
-AppData/Local/nvim/init.lua
+AppData
 .config/wezterm
 Documents
 {{ end }}
