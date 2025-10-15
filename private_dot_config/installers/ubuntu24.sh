@@ -151,7 +151,7 @@ else
 fi
 
 # Install nvm
-if ! [ -x $(command -v node) ]; then
+if ! [ -x "$(command -v node)" ]; then
     info "Installing nvm ..."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     . "$HOME/.bashrc"
