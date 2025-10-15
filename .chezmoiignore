@@ -1,0 +1,12 @@
+{{ if ne .chezmoi.os "windows" }}
+AppData/Local/nvim/init.lua
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/nvim
+.config/tmux
+.bashrc
+autoinstall.sh
+.bash_logout
+.bash_profile
+.profile
+{{ end }}
