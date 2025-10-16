@@ -9,6 +9,7 @@ Set-PSReadLineKeyHandler -Key Tab -Function Complete
 #Environments
 
 $env:PATH="$env:PATH;$env:USERPROFILE/bin;$env:USERPROFILE/.local/bin"
+$env:PATH="$env:PATH;$env:USERPROFILE/AppData/Local/bob/nvim-bin"
 [System.Environment]::SetEnvironmentVariable('VISUAL',"nvim")
 
 # Third Party modules
