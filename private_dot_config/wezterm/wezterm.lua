@@ -5,7 +5,7 @@ config.default_prog = {'pwsh'}
 -- config.default_prog = {'pwsh', "-NoLogo"}
 
 config.font_size = 13
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+config.font = wezterm.font("JetBrainsMonoNL Nerd Font Propo")
 
 
 
