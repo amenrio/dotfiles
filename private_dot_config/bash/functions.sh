@@ -124,7 +124,8 @@ git_global_status() {
 
 cd_to_dir(){
     local selected_dir
-    selected_dir=$(fd -t d . "$1" --max-depth 1 | fzf +m --height 50% --layout reverse --preview 'tree -C {}')
+    project_folders=$(fd -t d . $1 --max-depth 1 | sed 's/\/\+$//')
+    selected_dir=$(fd -t d . $project_folders --max-depth 1 | fzf +m --height 50% --layout reverse --preview 'tree -C {}')
     if [[ -n "$selected_dir" ]]; then
         cd "$selected_dir" || return 1
     fi
