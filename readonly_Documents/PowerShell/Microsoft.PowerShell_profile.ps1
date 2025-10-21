@@ -1,17 +1,8 @@
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSReadline
 
-# Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-# Set-PSReadLineOption -PredictionViewStyle InlineView
-# Set-PSReadLineOption -EditMode Windows
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
-
 #Environments
-
-$env:PATH="$env:PATH;$env:USERPROFILE/bin;$env:USERPROFILE/.local/bin"
-$env:PATH="$env:PATH;$env:USERPROFILE/AppData/Local/bob/nvim-bin"
-[System.Environment]::SetEnvironmentVariable('VISUAL',"nvim")
-
 # Third Party modules
 Import-Module -Name PSFzf
 
@@ -21,15 +12,21 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' `
 
 Set-PSReadLineOption -Colors @{ Parameter = 'DarkMagenta' }
 
-New-Alias -Name glog -Value 'git log --oneline --graph' -Force
-New-Alias -Name vim -Value nvim -Force
+$env:PATH="$env:PATH;$env:USERPROFILE/bin;$env:USERPROFILE/.local/bin"
+$env:PATH="$env:PATH;$env:USERPROFILE/AppData/Local/bob/nvim-bin"
+[System.Environment]::SetEnvironmentVariable('VISUAL',"nvim")
+
+if (!(Get-Alias -Name v -ErrorAction SilentlyContinue)){New-Alias -Name v -Value vim}
+if (!(Get-Alias -Name vim -ErrorAction SilentlyContinue)){New-Alias -Name vim -Value nvim}
+if (!(Get-Alias -Name glog -ErrorAction SilentlyContinue)){New-Alias -Name glog -Value 'git log --oneline --graph'}
+if (!(Get-Alias -Name lg -ErrorAction SilentlyContinue)){New-Alias -Name lg -Value lazygit}
 
 function clockIn {
-    pxnrm new timelog -p 1 -t 0 -c "Inicio Jornada"
+    uv run pxnrm new timelog -p 1 -t 0 -c "Inicio Jornada"
 }
 
 function clockOut {
-    pxnrm new timelog -p 1 -t 0 -c "Final Jornada"
+    uv run pxnrm new timelog -p 1 -t 0 -c "Final Jornada"
 }
 
 function vw {
@@ -37,28 +34,44 @@ function vw {
     vim .
 }
 
+function Change-Workspace {
+    param (
+        [Parameter(Mandatory=$false)]
+        [string]$project
+    )
+    $work_dir = "$env:USERPROFILE\work"
+    Set-Location (Get-ChildItem -Path "$work_dir\pxn","$work_dir\lux","$work_dir\ff","$work_dir\notes" -Directory | Where-Object { $_.Name -match '^[^_|^.]' } | Invoke-Fzf -Layout reverse)
+}
+
 function cdw {
-    $root = "$env:USERPROFILE\work"
-    & Deactivate-Venv
-    $location = fd . $root --max-depth 2 --type dir | fzf --layout=reverse
+    param (
+        [Parameter(Mandatory=$false)]
+        [string]$project
+    )
+    $work_dir = "$env:USERPROFILE\work"
+
+    $dirs = @( "$work_dir\ff", "$work_dir\pxn", "$work_dir\lux", "$work_dir\test", "$work_dir\notes")
+    if ($project) {
+        $dirs = @( "$work_dir\$project" )
+    }
+    $location = fd "^[^\_]" @dirs --type=dir --max-depth=1 | fzf --layout=reverse
     Set-Location $location
     & Activate-Venv
-
 }
+
 function cdc {
     # param (
     #     [Parameter(Mandatory=$false)]
     #     [string]$path
     # )
+    $dirs = @(
+    "$env:USERPROFILE\.config",
+    "$env:USERPROFILE\AppData\Local"
+    )
 
-    $location = fd . $env:USERPROFILE\.config $env:USERPROFILE\AppData\Local --maxdepth=1 --type=dir --full-path | fzf --layout=reverse
+    $location = fd . @dirs --maxdepth=1 --type=dir --full-path | fzf --layout=reverse
     Set-Location $location
 
-}
-
-function cdt {
-    $location = fd . $env:USERPROFILE\Documents\tests --maxdepth=1 --type=dir --full-path | fzf --layout=reverse
-    Set-Location $location
 }
 
 
@@ -98,3 +111,9 @@ function Invoke-Starship-PreCommand {
 [System.Environment]::SetEnvironmentVariable('PYTHONDONTWRITEBYTECODE',1)
 Invoke-Expression (&starship init powershell)
 
+$env:FZF_DEFAULT_OPTS='
+  --height=10%
+  --color=fg:-1,fg+:#d0d0d0,bg:-1,bg+:#262626
+  --color=hl:#5f87af,hl+:#5fd7ff,info:#afaf87,marker:#87ff00
+  --color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf
+  --color=border:#262626,label:#aeaeae,query:#d9d9d9'
